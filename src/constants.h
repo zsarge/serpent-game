@@ -1,10 +1,10 @@
 // ANCHOR - constants
 // screen sizing
-#define SCREEN_WIDTH 500
-#define SCREEN_HEIGHT 500
+#define SCREEN_WIDTH 645 
+#define SCREEN_HEIGHT 645
 
-// viewport handling
-#define VIEWPORT_SCALE 300
+// viewport handling - smaller = larger
+#define VIEWPORT_SCALE 600
 
 // screen positioning
 #define SCREEN_POS_X 20

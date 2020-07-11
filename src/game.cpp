@@ -5,14 +5,14 @@
 #include "constants.h"
 
 void drawGrid() {
-    for (float x = 1; x < ROWS; x++) {
-        for (float y = 1; y < COLUMNS; y++) {
+    for (float x = 0; x < ROWS; x++) {
+        for (float y = 0; y < COLUMNS; y++) {
             glColor3f(1.0, 1.0, 1.0);
             drawSquare(x, y);
         }
     }
-    // glColor3f(1, 0, 0);  // Set the colour to red
-    // drawSquare(2.0, 2.0);
+    glColor3f(1, 0, 0);  // Set the colour to red
+    drawSquare(2.0, 2.0);
 }
 
 void drawSquare(int x, int y) {  // ANCHOR - drawSquare
