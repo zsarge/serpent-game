@@ -17,9 +17,9 @@ void drawSquare(int x, int y) {  // ANCHOR - drawSquare
 }
 
 void drawGrid() {
-    for (float x = 0; x < ROWS; x++) {
-        for (float y = 0; y < COLUMNS; y++) {
-            glColor3f(GRID_COLOR);
+    for (float x = 0; x < Constants::ROWS; x++) {
+        for (float y = 0; y < Constants::COLUMNS; y++) {
+            glColor3f(Grid::RED, Grid::GREEN, Grid::BLUE);
             drawSquare(x, y);
         }
     }

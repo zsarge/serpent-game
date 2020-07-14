@@ -11,7 +11,7 @@ int main(int argc, char** argv) {  // ANCHOR - main
     // rgb mode with a double buffer
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
 
-    glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    glutInitWindowSize(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT);
     glutCreateWindow("Serpent Game");  // argument is window name
 
     glutDisplayFunc(display);
