@@ -5,6 +5,9 @@
 #include "constants.h"
 #include "game.h"
 
+// REVIEW - Consider breaking this into a snake class
+extern short SnakeDirection;
+
 int main(int argc, char** argv) {  // ANCHOR - main
     glutInit(&argc, argv);
 
@@ -17,6 +20,8 @@ int main(int argc, char** argv) {  // ANCHOR - main
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutTimerFunc(0, timer, 0);
+
+    glutKeyboardFunc(keypress);
 
     glClearColor(0, 0, 0, 1.0);  // default
 

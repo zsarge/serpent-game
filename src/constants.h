@@ -1,10 +1,10 @@
 // All important constants should be accessable from this file,
-// so that they are easily changed.
+// so that they can be easily changed.
 
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 // ANCHOR - constants
-class Constants {
+class Constants { // General constants
    public:
     // screen sizing
     static inline const int SCREEN_WIDTH = 645;
@@ -23,13 +23,24 @@ class Constants {
 
     // Frames per second
     // REVIEW - This might be changed later - Should not be constant?
-    static inline const int FPS = 10;
+    static inline const int FPS = 1;
 };
 
-class Grid {
+class GridColor {
    public:
     static inline const float RED = 0.892;
     static inline const float GREEN = 0.751;
     static inline const float BLUE = 0.694;
+};
+
+class SnakeConstants {
+   public:
+    static inline const int START_X = Constants::COLUMNS / 2;
+    static inline const int START_Y = Constants::ROWS / 2;
+
+    static inline const int UP = 1;
+    static inline const int DOWN = -1;
+    static inline const int RIGHT = 2;
+    static inline const int LEFT = -2;
 };
 #endif

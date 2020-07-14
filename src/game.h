@@ -8,5 +8,6 @@
 
 void drawSquare(int x, int y);
 void drawGrid();
+void DrawAndUpdateSnake();
 
 #endif

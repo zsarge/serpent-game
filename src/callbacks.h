@@ -10,5 +10,6 @@
 void display();
 void reshape(int width, int height);
 void timer(int);
+void keypress(unsigned char key, int, int);
 
 #endif
