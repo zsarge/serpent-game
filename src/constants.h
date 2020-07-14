@@ -1,3 +1,6 @@
+// All important constants should be accessable from this file,
+// so that they are easily changed.
+
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 // ANCHOR - constants
@@ -17,6 +20,10 @@ class Constants {
     // grid sizing
     static inline const int COLUMNS = 10;
     static inline const int ROWS = 10;
+
+    // Frames per second
+    // REVIEW - This might be changed later - Should not be constant?
+    static inline const int FPS = 10;
 };
 
 class Grid {

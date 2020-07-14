@@ -9,5 +9,6 @@
 
 void display();
 void reshape(int width, int height);
+void timer(int);
 
 #endif

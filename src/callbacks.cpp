@@ -7,7 +7,8 @@ void display() {
 }
 
 void reshape(int width, int height) {  // ANCHOR - reshape SIZE
-    glViewport(Constants::SCREEN_POS_X, Constants::SCREEN_POS_Y, Constants::VIEWPORT_SCALE, Constants::VIEWPORT_SCALE);
+    glViewport(Constants::SCREEN_POS_X, Constants::SCREEN_POS_Y,
+               Constants::VIEWPORT_SCALE, Constants::VIEWPORT_SCALE);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
@@ -16,4 +17,9 @@ void reshape(int width, int height) {  // ANCHOR - reshape SIZE
     glOrtho(0, Constants::ROWS, 0, Constants::COLUMNS, -1.0, 1.0);
 
     glMatrixMode(GL_MODELVIEW);
+}
+
+void timer(int) {
+    glutPostRedisplay();
+    glutTimerFunc(1000 / Constants::FPS, timer, 0);
 }
