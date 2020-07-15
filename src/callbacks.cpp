@@ -1,12 +1,20 @@
 #include "callbacks.h"
 
-extern short SnakeDirection;
+extern short snakeDirection;
+extern bool gameOver;
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     drawGrid();
     DrawAndUpdateSnake();
     glutSwapBuffers();
+
+    if (gameOver) {
+        // REVIEW - Gracefully handle gameover
+        while (true) {
+            // wait for the user to close the window.
+        }
+    }
 }
 
 void reshape(int width, int height) {  // ANCHOR - reshape SIZE
@@ -31,23 +39,23 @@ void keypress(unsigned char key, int, int) {
     // note that the serpent should not turn 180 degrees
     switch (key) {
         case 'w':
-            if (SnakeDirection != SnakeConstants::DOWN) {
-                SnakeDirection = SnakeConstants::UP;
+            if (snakeDirection != SnakeConstants::DOWN) {
+                snakeDirection = SnakeConstants::UP;
             }
             break;
         case 's':
-            if (SnakeDirection != SnakeConstants::UP) {
-                SnakeDirection = SnakeConstants::DOWN;
+            if (snakeDirection != SnakeConstants::UP) {
+                snakeDirection = SnakeConstants::DOWN;
             }
             break;
         case 'd':
-            if (SnakeDirection != SnakeConstants::LEFT) {
-                SnakeDirection = SnakeConstants::RIGHT;
+            if (snakeDirection != SnakeConstants::LEFT) {
+                snakeDirection = SnakeConstants::RIGHT;
             }
             break;
         case 'a':
-            if (SnakeDirection != SnakeConstants::RIGHT) {
-                SnakeDirection = SnakeConstants::LEFT;
+            if (snakeDirection != SnakeConstants::RIGHT) {
+                snakeDirection = SnakeConstants::LEFT;
             }
             break;
         default:

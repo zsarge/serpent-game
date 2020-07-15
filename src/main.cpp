@@ -6,7 +6,6 @@
 #include "game.h"
 
 // REVIEW - Consider breaking this into a snake class
-extern short SnakeDirection;
 
 int main(int argc, char** argv) {  // ANCHOR - main
     glutInit(&argc, argv);

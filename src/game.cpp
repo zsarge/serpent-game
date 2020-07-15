@@ -3,7 +3,8 @@
 // Variables are used in DrawAndUpdateSnake()
 int SnakeX = SnakeConstants::START_X;
 int SnakeY = SnakeConstants::START_Y;
-short SnakeDirection = SnakeConstants::RIGHT;
+short snakeDirection = SnakeConstants::RIGHT;
+bool gameOver = false;
 
 void drawSquare(int x, int y) {  // ANCHOR - drawSquare
     glLineWidth(10.0);
@@ -21,7 +22,8 @@ void drawSquare(int x, int y) {  // ANCHOR - drawSquare
     glFlush();
 }
 
-// REVIEW - should rename to fit naming conventions? Or is everything else wrong?
+// REVIEW - should rename to fit naming conventions? Or is everything else
+// wrong?
 void drawGrid() {
     for (float x = 0; x < Constants::ROWS; x++) {
         for (float y = 0; y < Constants::COLUMNS; y++) {
@@ -32,14 +34,21 @@ void drawGrid() {
 }
 
 void DrawAndUpdateSnake() {
-    if (SnakeDirection == SnakeConstants::UP) {
+    // Direction Logic:
+    if (snakeDirection == SnakeConstants::UP) {
         SnakeY++;
-    } else if (SnakeDirection == SnakeConstants::DOWN) {
+    } else if (snakeDirection == SnakeConstants::DOWN) {
         SnakeY--;
-    } else if (SnakeDirection == SnakeConstants::RIGHT) {
+    } else if (snakeDirection == SnakeConstants::RIGHT) {
         SnakeX++;
-    } else if (SnakeDirection == SnakeConstants::LEFT) {
+    } else if (snakeDirection == SnakeConstants::LEFT) {
         SnakeX--;
+    }
+
+    // Make sure the serpent doesn't leave the screen:
+    if (SnakeX == 0 || SnakeX == Constants::COLUMNS || SnakeY == 0 ||
+        SnakeY == Constants::ROWS) {
+        gameOver = true;
     }
 
     glColor3f(1, 0, 0);  // Set the colour to red
