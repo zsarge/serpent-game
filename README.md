@@ -6,7 +6,14 @@ This is certianly not an innovative game concept, but it's a good place to start
 
 This was developed on Ubuntu. Hopefully the codebase is cross platform compatible, but I don't know yet.
 
+The code uses the terms snake and serpent interchangably.
 
 Todo: 
     Make constants lowercase
     Make functions a UniformCase
+    Move SnakeX & SnakeY into Snake class
+
+Plan:
+    Create a snake class
+    A snake is an array of segment structs
+        Push to the array to make snake longer

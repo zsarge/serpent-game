@@ -4,7 +4,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 // ANCHOR - constants
-class Constants { // General constants
+class Constants {  // General constants
    public:
     // screen sizing
     static inline const int SCREEN_WIDTH = 645;
@@ -42,5 +42,9 @@ class SnakeConstants {
     static inline const int DOWN = -1;
     static inline const int RIGHT = 2;
     static inline const int LEFT = -2;
+
+    static inline const float RED = 1.0;
+    static inline const float GREEN = 0.0;
+    static inline const float BLUE = 0.0;
 };
 #endif
