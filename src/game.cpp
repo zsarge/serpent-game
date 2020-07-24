@@ -66,8 +66,10 @@ void drawGrid() {
 void DrawAndUpdateSnake() {
     UpdateSnake();
 
+    // REVIEW - change for all segments
     glColor3f(SnakeConstants::RED, SnakeConstants::GREEN, SnakeConstants::BLUE);
-    glRectd(SnakeX, SnakeY, SnakeX + 1, SnakeY + 1);
+    glRectd(snake.GetSegment(0).X, snake.GetSegment(0).Y,
+            snake.GetSegment(0).X + 1, snake.GetSegment(0).Y + 1);
 }
 
 void UpdateSnake() {
@@ -78,18 +80,21 @@ void UpdateSnake() {
 void MoveSnake() {
     // Check which direction the snake is moving,
     // and move it in that direction.
+    int XPos = snake.GetSegment(0).X;
+    int YPos = snake.GetSegment(0).Y;
+
     switch (snakeDirection) {
         case SnakeConstants::UP:
-            SnakeY++;
+            snake.SetSegment(0, XPos, YPos + 1);
             break;
         case SnakeConstants::DOWN:
-            SnakeY--;
+            snake.SetSegment(0, XPos, YPos - 1);
             break;
         case SnakeConstants::RIGHT:
-            SnakeX++;
+            snake.SetSegment(0, XPos + 1, YPos);
             break;
         case SnakeConstants::LEFT:
-            SnakeX--;
+            snake.SetSegment(0, XPos - 1, YPos);
             break;
         default:
             break;
@@ -97,13 +102,16 @@ void MoveSnake() {
 }
 
 void WrapSnake() {
-    if (SnakeX == -1) {
-        SnakeX = Constants::COLUMNS - 1;
-    } else if (SnakeY == -1) {
-        SnakeY = Constants::ROWS - 1;
-    } else if (SnakeX == Constants::COLUMNS) {
-        SnakeX = 0;
-    } else if (SnakeY == Constants::ROWS) {
-        SnakeY = 0;
+    int XPos = snake.GetSegment(0).X;
+    int YPos = snake.GetSegment(0).Y;
+
+    if (snake.GetSegment(0).X == -1) {
+        snake.SetSegment(0, Constants::COLUMNS - 1, YPos);
+    } else if (snake.GetSegment(0).Y == -1) {
+        snake.SetSegment(0, XPos, Constants::ROWS - 1);
+    } else if (snake.GetSegment(0).X == Constants::COLUMNS) {
+        snake.SetSegment(0, 0, YPos);
+    } else if (snake.GetSegment(0).Y == Constants::ROWS) {
+        snake.SetSegment(0, XPos, 0);
     }
 }
