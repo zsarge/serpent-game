@@ -5,9 +5,8 @@
 #include "constants.h"
 #include "game.h"
 
-// REVIEW - Consider breaking this into a snake class
-
 int main(int argc, char** argv) {  // ANCHOR - main
+    SendRulesToOutputStream();
     glutInit(&argc, argv);
 
     // rgb mode with a double buffer

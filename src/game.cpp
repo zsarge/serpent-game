@@ -6,6 +6,15 @@ int SnakeY = SnakeConstants::START_Y;
 short snakeDirection = SnakeConstants::RIGHT;
 bool gameOver = false;
 
+void SendRulesToOutputStream() {
+    std::cout << "Hello. This is a serpent game by Zack Sargent made\n";
+    std::cout << "to learn the basics of graphics in C++.\n\n";
+    std::cout << "Instructions:\n";
+    std::cout << "\tUse WASD to control the serpent.\n";
+    std::cout << "\tDo not run into yourself or the walls.\n";
+    std::cout.flush();
+}
+
 void drawSquare(int x, int y) {  // ANCHOR - drawSquare
     glLineWidth(10.0);
 
@@ -34,15 +43,30 @@ void drawGrid() {
 }
 
 void DrawAndUpdateSnake() {
-    // Direction Logic:
-    if (snakeDirection == SnakeConstants::UP) {
-        SnakeY++;
-    } else if (snakeDirection == SnakeConstants::DOWN) {
-        SnakeY--;
-    } else if (snakeDirection == SnakeConstants::RIGHT) {
-        SnakeX++;
-    } else if (snakeDirection == SnakeConstants::LEFT) {
-        SnakeX--;
+    UpdateSnake();
+
+    glColor3f(1, 0, 0);  // Set the colour to red
+    glRectd(SnakeX, SnakeY, SnakeX + 1, SnakeY + 1);
+}
+
+void UpdateSnake() {
+    // Check which direction the snake is moving,
+    // and move it in that direction.
+    switch (snakeDirection) {
+        case SnakeConstants::UP:
+            SnakeY++;
+            break;
+        case SnakeConstants::DOWN:
+            SnakeY--;
+            break;
+        case SnakeConstants::RIGHT:
+            SnakeX++;
+            break;
+        case SnakeConstants::LEFT:
+            SnakeX--;
+            break;
+        default:
+            break;
     }
 
     // Make sure the serpent doesn't leave the screen:
@@ -50,7 +74,4 @@ void DrawAndUpdateSnake() {
         SnakeY == Constants::ROWS) {
         gameOver = true;
     }
-
-    glColor3f(1, 0, 0);  // Set the colour to red
-    glRectd(SnakeX, SnakeY, SnakeX + 1, SnakeY + 1);
 }
