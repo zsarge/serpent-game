@@ -6,7 +6,21 @@ int SnakeY = SnakeConstants::START_Y;
 short snakeDirection = SnakeConstants::RIGHT;
 bool gameOver = false;
 
-Snake::Snake() { // Snake constructor
+// define the main snake object
+Snake snake;
+
+segment Snake::GetSegment(int index) {
+    // getter for snake object
+    return body[index];
+}
+
+void Snake::SetSegment(int index, int X, int Y) {
+    // setter for snake object
+    body[index].X = X;
+    body[index].Y = Y;
+}
+
+Snake::Snake() {  // Snake constructor
     segment head = {SnakeConstants::START_X, SnakeConstants::START_Y};
     body.push_back(head);
 }
@@ -39,6 +53,8 @@ void drawSquare(int x, int y) {  // ANCHOR - drawSquare
 // REVIEW - should rename to fit naming conventions? Or is everything else
 // wrong?
 void drawGrid() {
+    std::cout << "\nX = " << snake.GetSegment(0).X << std::endl;
+    std::cout << "Y = " << snake.GetSegment(0).Y << std::endl;
     for (float x = 0; x < Constants::ROWS; x++) {
         for (float y = 0; y < Constants::COLUMNS; y++) {
             glColor3f(GridColor::RED, GridColor::GREEN, GridColor::BLUE);

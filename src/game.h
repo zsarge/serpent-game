@@ -10,8 +10,8 @@
 #include "constants.h"
 
 struct segment {
-    int segmentX;
-    int segmentY;
+    int X;  // segment X position
+    int Y;  // segment Y position
 };
 
 class Snake {
@@ -19,6 +19,8 @@ class Snake {
     std::vector<segment> body;
 
    public:
+    segment GetSegment(int index);
+    void SetSegment(int index, int X, int Y);
     Snake();
 };
 

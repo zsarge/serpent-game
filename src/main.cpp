@@ -5,12 +5,10 @@
 #include "constants.h"
 #include "game.h"
 
+
 int main(int argc, char** argv) {  // ANCHOR - main
     SendRulesToOutputStream();
     glutInit(&argc, argv);
-
-    // define the main snake object
-    Snake snake;
 
     // rgb mode with a double buffer
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);

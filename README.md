@@ -11,7 +11,7 @@ The code uses the terms snake and serpent interchangably.
 Todo: 
     Make constants lowercase
     Make functions a UniformCase
-    Move SnakeX & SnakeY into Snake class
+    Move snakeDirection into Snake class
 
 Plan:
     Create a snake class
