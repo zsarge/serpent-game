@@ -26,9 +26,8 @@ int Snake::GetLength() {
 Snake::Snake() {  // Snake constructor
     segment head = {SnakeConstants::START_X, SnakeConstants::START_Y};
     body.push_back(head);
-    // REVIEW - uncomment:
-    // segment temp = {SnakeConstants::START_X - 1, SnakeConstants::START_Y};
-    // body.push_back(temp);
+    segment temp = {SnakeConstants::START_X - 1, SnakeConstants::START_Y};
+    body.push_back(temp);
 }
 
 void SendRulesToOutputStream() {
@@ -70,10 +69,12 @@ void drawGrid() {
 void DrawAndUpdateSnake() {
     UpdateSnake();
 
-    // REVIEW - change for all segments
-    glColor3f(SnakeConstants::RED, SnakeConstants::GREEN, SnakeConstants::BLUE);
-    glRectd(snake.GetSegment(0).X, snake.GetSegment(0).Y,
-            snake.GetSegment(0).X + 1, snake.GetSegment(0).Y + 1);
+    for (int index = 0; index <= snake.GetLength() - 1; index++) {
+        glColor3f(SnakeConstants::RED, SnakeConstants::GREEN,
+                  SnakeConstants::BLUE);
+        glRectd(snake.GetSegment(index).X, snake.GetSegment(index).Y,
+                snake.GetSegment(index).X + 1, snake.GetSegment(index).Y + 1);
+    }
 }
 
 void UpdateSnake() {
@@ -82,12 +83,12 @@ void UpdateSnake() {
 }
 
 void MoveSnake() {
-    MoveHead();
     // moves snake forward, started at end of snake
     for (int index = snake.GetLength() - 1; index > 0; index--) {
         segment nextPosition = snake.GetSegment(index - 1);
         snake.SetSegment(index, nextPosition.X, nextPosition.Y);
     }
+    MoveHead();
 }
 
 void MoveHead() {
@@ -135,7 +136,5 @@ void WrapSnake() {
                 snake.SetSegment(index, XPos, 0);
                 break;
         }
-
-        std::cout << "length " << snake.GetLength() << std::endl;
     }
 }
