@@ -23,6 +23,7 @@ class Snake {
     void SetSegment(int index, int X, int Y);
     int GetLength();
     Snake(); // constructor function
+    ~Snake(); // deconstructor function
 };
 
 void SendRulesToOutputStream();

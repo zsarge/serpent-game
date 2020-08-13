@@ -9,13 +9,21 @@ This was developed on Ubuntu. Hopefully the codebase is cross platform compatibl
 The code uses the terms snake and serpent interchangably.
 
 Todo: 
-    Make constants lowercase
-    Make functions a UniformCase
-    Move snakeDirection into Snake class
-    Make instruction queue
-    deconstructor function to clear vector
-    make snake direction enum
 
-Plan:
-    A snake is an array of segment structs
-        Push to the array to make snake longer
+    - Make constants lowercase
+
+    - Make functions a UniformCase
+
+    - Move snakeDirection into Snake class
+
+    - Make instruction queue
+
+    - deconstructor function to clear vector
+
+    - make snake direction enum
+
+    - Add food
+
+    - Add death rules 
+
+    - Add action queue

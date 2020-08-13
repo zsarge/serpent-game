@@ -32,7 +32,7 @@ void reshape(int width, int height) {  // ANCHOR - reshape SIZE
 
 void timer(int) {
     glutPostRedisplay();
-    glutTimerFunc(1000 / Constants::FPS, timer, 0);
+    glutTimerFunc(500 / Constants::FPS, timer, 0);
 }
 
 void keypress(unsigned char key, int, int) {

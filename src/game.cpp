@@ -30,6 +30,10 @@ Snake::Snake() {  // Snake constructor
     body.push_back(temp);
 }
 
+Snake::~Snake() {  // Snake constructor
+    body.clear();
+}
+
 void SendRulesToOutputStream() {
     std::cout << "Hello. This is a serpent game by Zack Sargent made\n";
     std::cout << "to learn the basics of graphics in C++.\n\n";
