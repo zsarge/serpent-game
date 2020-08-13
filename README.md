@@ -12,8 +12,10 @@ Todo:
     Make constants lowercase
     Make functions a UniformCase
     Move snakeDirection into Snake class
+    Make instruction queue
+    deconstructor function to clear vector
+    make snake direction enum
 
 Plan:
-    Create a snake class
     A snake is an array of segment structs
         Push to the array to make snake longer

@@ -21,7 +21,8 @@ class Snake {
    public:
     segment GetSegment(int index);
     void SetSegment(int index, int X, int Y);
-    Snake();
+    int GetLength();
+    Snake(); // constructor function
 };
 
 void SendRulesToOutputStream();
@@ -29,6 +30,7 @@ void drawSquare(int x, int y);
 void drawGrid();
 void WrapSnake();
 void MoveSnake();
+void MoveHead();
 void UpdateSnake();
 void DrawAndUpdateSnake();
 
