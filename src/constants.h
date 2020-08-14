@@ -23,7 +23,7 @@ class Constants {  // General constants
 
     // Frames per second
     // REVIEW - This might be changed later - Should not be constant?
-    static inline const int FPS = 1;
+    static inline const int FPS = 2;
 };
 
 class GridColor {

@@ -1,10 +1,11 @@
 #include "game.h"
 
-// Variables are used in DrawAndUpdateGame()
 short snakeDirection = SnakeConstants::RIGHT;
+int snakeSpeed = 0;
 
 // define the main snake object
 Snake snake;
+
 
 // define the main food object
 Food food;
@@ -28,10 +29,11 @@ int Snake::GetLength() {
 void Snake::Grow() {
     segment head = snake.GetSegment(snake.GetLength() - 1);
     body.push_back(head);
+    snakeSpeed += 10;
 }
 
 void Snake::Restart() {
-    // REVIEW - Once timer is added, reset it here
+    snakeSpeed = 0;
     // clear length and restart game
     usleep(3000000);  // unix sleep command
     snakeDirection = SnakeConstants::RIGHT;
