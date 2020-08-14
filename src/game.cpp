@@ -2,7 +2,6 @@
 
 // Variables are used in DrawAndUpdateGame()
 short snakeDirection = SnakeConstants::RIGHT;
-bool gameOver = false;
 
 // define the main snake object
 Snake snake;
@@ -27,8 +26,22 @@ int Snake::GetLength() {
 }
 
 void Snake::Grow() {
-    segment head = snake.GetSegment(0);
+    segment head = snake.GetSegment(snake.GetLength() - 1);
     body.push_back(head);
+}
+
+void Snake::Restart() {
+    // REVIEW - Once timer is added, reset it here
+    // clear length and restart game
+    usleep(3000000);  // unix sleep command
+    snakeDirection = SnakeConstants::RIGHT;
+    body.clear();
+    segment head = {SnakeConstants::START_X, SnakeConstants::START_Y};
+    body.push_back(head);
+    segment temp = {SnakeConstants::START_X - 1, SnakeConstants::START_Y};
+    body.push_back(temp);
+    food.MoveFood();
+    std::cout << "restarted" << std::endl;
 }
 
 Snake::Snake() {  // Snake constructor
@@ -58,10 +71,11 @@ void Food::MoveFood() {
         segment body = snake.GetSegment(index);
         if (temp.X == body.X && temp.Y == body.Y) {
             overlaps = true;
-        } 
+        }
     }
 
     if (overlaps) {
+        // recursively call this function, until the food is not on the snake
         food.MoveFood();
     } else {
         piece = temp;
@@ -118,17 +132,27 @@ void DrawAndUpdateGame() {
     UpdateSnake();
     ApplyFoodRules();
 
-    // draw snake
-    // REVIEW - replace redundant snake.GetSegment w/ variable
+    // draw snake body
     glColor3f(SnakeConstants::RED, SnakeConstants::GREEN, SnakeConstants::BLUE);
-    for (int index = 0; index <= snake.GetLength() - 1; index++) {
+    for (int index = 1; index <= snake.GetLength() - 2; index++) {
         segment body = snake.GetSegment(index);
         glRectd(body.X, body.Y, body.X + 1, body.Y + 1);
     }
 
+    // draw snake tail
+    glColor3f(SnakeConstants::TAIL_RED, SnakeConstants::TAIL_GREEN,
+              SnakeConstants::TAIL_BLUE);
+    segment body = snake.GetSegment(snake.GetLength() - 1);
+    glRectd(body.X, body.Y, body.X + 1, body.Y + 1);
+
+    // draw snake head
+    glColor3f(SnakeConstants::HEAD_RED, SnakeConstants::HEAD_GREEN,
+              SnakeConstants::HEAD_BLUE);
+    segment head = snake.GetSegment(0);
+    glRectd(head.X, head.Y, head.X + 1, head.Y + 1);
+
     // draw food
     glColor3f(FoodConstants::RED, FoodConstants::GREEN, FoodConstants::BLUE);
-
     segment piece = food.GetFood();
     glRectd(piece.X, piece.Y, piece.X + 1, piece.Y + 1);
 }
@@ -143,6 +167,7 @@ void ApplyFoodRules() {
 }
 
 void UpdateSnake() {
+    CheckSnake();
     MoveSnake();
     WrapSnake();
 }
@@ -200,6 +225,17 @@ void WrapSnake() {
             case Constants::ROWS:  // too far up
                 snake.SetSegment(index, XPos, 0);
                 break;
+        }
+    }
+}
+
+void CheckSnake() {  // makes sure the snake is not running into itself.
+    // REVIEW - This will benefit significantly from operator overloading
+    segment head = snake.GetSegment(0);
+    for (int index = 1; index <= snake.GetLength() - 1; index++) {
+        if (head.X == snake.GetSegment(index).X &&
+            head.Y == snake.GetSegment(index).Y) {
+            snake.Restart();
         }
     }
 }

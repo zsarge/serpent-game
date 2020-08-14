@@ -43,9 +43,17 @@ class SnakeConstants {
     static inline const int RIGHT = 2;
     static inline const int LEFT = -2;
 
-    static inline const float RED = 1.0;
+    static inline const float RED = 0.65;
     static inline const float GREEN = 0.0;
     static inline const float BLUE = 0.0;
+
+    static inline const float HEAD_RED = 0.8;
+    static inline const float HEAD_GREEN = 0.0;
+    static inline const float HEAD_BLUE = 0.0;
+
+    static inline const float TAIL_RED = 0.5;
+    static inline const float TAIL_GREEN = 0.0;
+    static inline const float TAIL_BLUE = 0.0;
 };
 
 class FoodConstants {

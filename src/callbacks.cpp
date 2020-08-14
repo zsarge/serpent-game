@@ -1,20 +1,12 @@
 #include "callbacks.h"
 
 extern short snakeDirection;
-extern bool gameOver;
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     drawGrid();
     DrawAndUpdateGame();
     glutSwapBuffers();
-
-    if (gameOver) {
-        // REVIEW - Gracefully handle gameover
-        while (true) {
-            // wait for the user to close the window.
-        }
-    }
 }
 
 void reshape(int width, int height) {  // ANCHOR - reshape SIZE

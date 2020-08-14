@@ -5,6 +5,7 @@
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 #include <iostream>
 #include <vector>
@@ -18,6 +19,7 @@ struct segment {
 
 class Snake {
    private:
+    // REVIEW - consider making static?
     std::vector<segment> body;
 
    public:
@@ -25,6 +27,7 @@ class Snake {
     void SetSegment(int index, int X, int Y);
     int GetLength();
     void Grow();
+    void Restart();
     Snake();   // constructor function
     ~Snake();  // deconstructor function
 };
@@ -46,6 +49,7 @@ void drawGrid();
 void WrapSnake();
 void MoveSnake();
 void MoveHead();
+void CheckSnake();
 void UpdateSnake();
 void ApplyFoodRules();
 void DrawAndUpdateGame();
