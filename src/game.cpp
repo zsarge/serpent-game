@@ -49,10 +49,23 @@ Food::Food() {
 }
 
 void Food::MoveFood() {
-    piece.X = RandomNumber(0, Constants::COLUMNS - 1);
-    piece.Y = RandomNumber(0, Constants::ROWS - 1);
-    // REVIEW - remove cout
-    std::cout << "x: " << piece.X << " y: " << piece.Y << std::endl;
+    segment temp;
+    bool overlaps = false;
+    temp.X = RandomNumber(0, Constants::COLUMNS - 1);
+    temp.Y = RandomNumber(0, Constants::ROWS - 1);
+
+    for (int index = 0; index <= snake.GetLength() - 1; index++) {
+        segment body = snake.GetSegment(index);
+        if (temp.X == body.X && temp.Y == body.Y) {
+            overlaps = true;
+        } 
+    }
+
+    if (overlaps) {
+        food.MoveFood();
+    } else {
+        piece = temp;
+    }
 }
 
 segment Food::GetFood() {
@@ -122,7 +135,8 @@ void DrawAndUpdateGame() {
 
 void ApplyFoodRules() {
     // REVIEW - apply rules
-    if (snake.GetSegment(0).X == food.GetFood().X && snake.GetSegment(0).Y == food.GetFood().Y) {
+    if (snake.GetSegment(0).X == food.GetFood().X &&
+        snake.GetSegment(0).Y == food.GetFood().Y) {
         snake.Grow();
         food.MoveFood();
     }
