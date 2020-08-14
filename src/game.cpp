@@ -7,6 +7,9 @@ bool gameOver = false;
 // define the main snake object
 Snake snake;
 
+// define the main snake object
+Food food;
+
 segment Snake::GetSegment(int index) {
     // getter for snake object
     return body[index];
@@ -30,8 +33,24 @@ Snake::Snake() {  // Snake constructor
     body.push_back(temp);
 }
 
-Snake::~Snake() {  // Snake constructor
+Snake::~Snake() {  // Snake deconstructor
     body.clear();
+}
+
+Food::Food() {
+    // food constructor
+    srand(time(nullptr));
+    food.MoveFood();
+}
+
+void Food::MoveFood() {
+    piece.X = RandomNumber(0, Constants::COLUMNS);
+    piece.Y = RandomNumber(0, Constants::ROWS);
+}
+
+int RandomNumber(int start, int stop) {
+    // srand is called earlier
+    return rand() % 10 + 1;
 }
 
 void SendRulesToOutputStream() {
@@ -73,12 +92,15 @@ void drawGrid() {
 void DrawAndUpdateSnake() {
     UpdateSnake();
 
+    // draw snake
+    glColor3f(SnakeConstants::RED, SnakeConstants::GREEN, SnakeConstants::BLUE);
     for (int index = 0; index <= snake.GetLength() - 1; index++) {
-        glColor3f(SnakeConstants::RED, SnakeConstants::GREEN,
-                  SnakeConstants::BLUE);
         glRectd(snake.GetSegment(index).X, snake.GetSegment(index).Y,
                 snake.GetSegment(index).X + 1, snake.GetSegment(index).Y + 1);
     }
+
+    // draw food
+    glColor3f(FoodConstants::RED, FoodConstants::GREEN, FoodConstants::BLUE);
 }
 
 void UpdateSnake() {

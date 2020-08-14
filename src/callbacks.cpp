@@ -23,6 +23,7 @@ void reshape(int width, int height) {  // ANCHOR - reshape SIZE
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
+    // REVIEW - perspective
     // I'm currently making this game in 2D.
     // In the future, I plan to switch to a 3D perspective.
     glOrtho(0, Constants::ROWS, 0, Constants::COLUMNS, -1.0, 1.0);

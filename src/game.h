@@ -3,6 +3,8 @@
 
 #include <GL/gl.h>
 #include <GL/glut.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include <iostream>
 #include <vector>
@@ -22,10 +24,20 @@ class Snake {
     segment GetSegment(int index);
     void SetSegment(int index, int X, int Y);
     int GetLength();
-    Snake(); // constructor function
-    ~Snake(); // deconstructor function
+    Snake();   // constructor function
+    ~Snake();  // deconstructor function
 };
 
+class Food {
+   private:
+    segment piece;
+
+   public:
+    void MoveFood();
+    Food();
+};
+
+int RandomNumber(int start, int stop);
 void SendRulesToOutputStream();
 void drawSquare(int x, int y);
 void drawGrid();

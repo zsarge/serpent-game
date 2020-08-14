@@ -5,7 +5,6 @@
 #include "constants.h"
 #include "game.h"
 
-
 int main(int argc, char** argv) {  // ANCHOR - main
     SendRulesToOutputStream();
     glutInit(&argc, argv);

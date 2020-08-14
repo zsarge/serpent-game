@@ -47,4 +47,11 @@ class SnakeConstants {
     static inline const float GREEN = 0.0;
     static inline const float BLUE = 0.0;
 };
+
+class FoodConstants {
+   public:
+    static inline const float RED = 0.0;
+    static inline const float GREEN = 1.0;
+    static inline const float BLUE = 0.0;
+};
 #endif
