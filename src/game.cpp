@@ -1,6 +1,6 @@
 #include "game.h"
 
-// Variables are used in DrawAndUpdateSnake()
+// Variables are used in DrawAndUpdateGame()
 short snakeDirection = SnakeConstants::RIGHT;
 bool gameOver = false;
 
@@ -26,6 +26,11 @@ int Snake::GetLength() {
     return body.size();
 }
 
+void Snake::Grow() {
+    segment head = snake.GetSegment(0);
+    body.push_back(head);
+}
+
 Snake::Snake() {  // Snake constructor
     segment head = {SnakeConstants::START_X, SnakeConstants::START_Y};
     body.push_back(head);
@@ -46,6 +51,7 @@ Food::Food() {
 void Food::MoveFood() {
     piece.X = RandomNumber(0, Constants::COLUMNS - 1);
     piece.Y = RandomNumber(0, Constants::ROWS - 1);
+    // REVIEW - remove cout
     std::cout << "x: " << piece.X << " y: " << piece.Y << std::endl;
 }
 
@@ -95,15 +101,16 @@ void drawGrid() {
     }
 }
 
-void DrawAndUpdateSnake() {
+void DrawAndUpdateGame() {
     UpdateSnake();
+    ApplyFoodRules();
 
     // draw snake
     // REVIEW - replace redundant snake.GetSegment w/ variable
     glColor3f(SnakeConstants::RED, SnakeConstants::GREEN, SnakeConstants::BLUE);
     for (int index = 0; index <= snake.GetLength() - 1; index++) {
-        glRectd(snake.GetSegment(index).X, snake.GetSegment(index).Y,
-                snake.GetSegment(index).X + 1, snake.GetSegment(index).Y + 1);
+        segment body = snake.GetSegment(index);
+        glRectd(body.X, body.Y, body.X + 1, body.Y + 1);
     }
 
     // draw food
@@ -111,6 +118,14 @@ void DrawAndUpdateSnake() {
 
     segment piece = food.GetFood();
     glRectd(piece.X, piece.Y, piece.X + 1, piece.Y + 1);
+}
+
+void ApplyFoodRules() {
+    // REVIEW - apply rules
+    if (snake.GetSegment(0).X == food.GetFood().X && snake.GetSegment(0).Y == food.GetFood().Y) {
+        snake.Grow();
+        food.MoveFood();
+    }
 }
 
 void UpdateSnake() {
@@ -149,7 +164,6 @@ void MoveHead() {
         default:
             break;
     }
-    std::cout << "XPos: " << XPos << " YPos: " << YPos << std::endl;
 }
 
 void WrapSnake() {

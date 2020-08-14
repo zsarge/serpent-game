@@ -24,6 +24,7 @@ class Snake {
     segment GetSegment(int index);
     void SetSegment(int index, int X, int Y);
     int GetLength();
+    void Grow();
     Snake();   // constructor function
     ~Snake();  // deconstructor function
 };
@@ -46,6 +47,7 @@ void WrapSnake();
 void MoveSnake();
 void MoveHead();
 void UpdateSnake();
-void DrawAndUpdateSnake();
+void ApplyFoodRules();
+void DrawAndUpdateGame();
 
 #endif

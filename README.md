@@ -11,13 +11,13 @@ The code uses the terms snake and serpent interchangably.
 
 Todo:
 
+- add overload operator for == in apply rules
 - Make constants lowercase
 - Make functions a UniformCase
 - Move snakeDirection into Snake class
 - Make instruction queue
 - deconstructor function to clear vector
 - make snake direction enum
-- Add food
 - make snake not speed run on resize
 - Add death rules
 - Add action queue
