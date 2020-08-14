@@ -18,5 +18,6 @@ Todo:
 - deconstructor function to clear vector
 - make snake direction enum
 - Add food
+- make snake not speed run on resize
 - Add death rules
 - Add action queue

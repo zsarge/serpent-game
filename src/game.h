@@ -34,6 +34,7 @@ class Food {
 
    public:
     void MoveFood();
+    segment GetFood();
     Food();
 };
 

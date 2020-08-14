@@ -7,7 +7,7 @@ bool gameOver = false;
 // define the main snake object
 Snake snake;
 
-// define the main snake object
+// define the main food object
 Food food;
 
 segment Snake::GetSegment(int index) {
@@ -39,18 +39,24 @@ Snake::~Snake() {  // Snake deconstructor
 
 Food::Food() {
     // food constructor
-    srand(time(nullptr));
+    srand(time(NULL));
     food.MoveFood();
 }
 
 void Food::MoveFood() {
-    piece.X = RandomNumber(0, Constants::COLUMNS);
-    piece.Y = RandomNumber(0, Constants::ROWS);
+    piece.X = RandomNumber(0, Constants::COLUMNS - 1);
+    piece.Y = RandomNumber(0, Constants::ROWS - 1);
+    std::cout << "x: " << piece.X << " y: " << piece.Y << std::endl;
+}
+
+segment Food::GetFood() {
+    // Getter for Food
+    return piece;
 }
 
 int RandomNumber(int start, int stop) {
-    // srand is called earlier
-    return rand() % 10 + 1;
+    // srand is called in object constructor
+    return rand() % stop + start;
 }
 
 void SendRulesToOutputStream() {
@@ -93,6 +99,7 @@ void DrawAndUpdateSnake() {
     UpdateSnake();
 
     // draw snake
+    // REVIEW - replace redundant snake.GetSegment w/ variable
     glColor3f(SnakeConstants::RED, SnakeConstants::GREEN, SnakeConstants::BLUE);
     for (int index = 0; index <= snake.GetLength() - 1; index++) {
         glRectd(snake.GetSegment(index).X, snake.GetSegment(index).Y,
@@ -101,6 +108,9 @@ void DrawAndUpdateSnake() {
 
     // draw food
     glColor3f(FoodConstants::RED, FoodConstants::GREEN, FoodConstants::BLUE);
+
+    segment piece = food.GetFood();
+    glRectd(piece.X, piece.Y, piece.X + 1, piece.Y + 1);
 }
 
 void UpdateSnake() {
@@ -139,6 +149,7 @@ void MoveHead() {
         default:
             break;
     }
+    std::cout << "XPos: " << XPos << " YPos: " << YPos << std::endl;
 }
 
 void WrapSnake() {
