@@ -5,7 +5,7 @@ extern int snakeSpeed;
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
-    drawGrid();
+    DrawGrid();
     DrawAndUpdateGame();
     glutSwapBuffers();
 }

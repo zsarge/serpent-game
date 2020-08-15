@@ -6,7 +6,6 @@ int snakeSpeed = 0;
 // define the main snake object
 Snake snake;
 
-
 // define the main food object
 Food food;
 
@@ -29,10 +28,12 @@ int Snake::GetLength() {
 void Snake::Grow() {
     segment head = snake.GetSegment(snake.GetLength() - 1);
     body.push_back(head);
-    snakeSpeed += 10;
+    snakeSpeed += Constants::POINTS_PER_FOOD;
 }
 
 void Snake::Restart() {
+    std::cout << "You died with " << snakeSpeed / Constants::POINTS_PER_FOOD
+              << " food." << std::endl;
     snakeSpeed = 0;
     // clear length and restart game
     usleep(3000000);  // unix sleep command
@@ -43,7 +44,6 @@ void Snake::Restart() {
     segment temp = {SnakeConstants::START_X - 1, SnakeConstants::START_Y};
     body.push_back(temp);
     food.MoveFood();
-    std::cout << "restarted" << std::endl;
 }
 
 Snake::Snake() {  // Snake constructor
@@ -103,7 +103,7 @@ void SendRulesToOutputStream() {
     std::cout.flush();
 }
 
-void drawSquare(int x, int y) {  // ANCHOR - drawSquare
+void DrawSquare(int x, int y) {  // ANCHOR - DrawSquare
     glLineWidth(10.0);
 
     // 2f takes two floating points
@@ -121,11 +121,11 @@ void drawSquare(int x, int y) {  // ANCHOR - drawSquare
 
 // REVIEW - should rename to fit naming conventions? Or is everything else
 // wrong?
-void drawGrid() {
+void DrawGrid() {
     for (float x = 0; x < Constants::ROWS; x++) {
         for (float y = 0; y < Constants::COLUMNS; y++) {
             glColor3f(GridColor::RED, GridColor::GREEN, GridColor::BLUE);
-            drawSquare(x, y);
+            DrawSquare(x, y);
         }
     }
 }

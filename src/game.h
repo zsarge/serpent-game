@@ -44,8 +44,8 @@ class Food {
 
 int RandomNumber(int start, int stop);
 void SendRulesToOutputStream();
-void drawSquare(int x, int y);
-void drawGrid();
+void DrawSquare(int x, int y);
+void DrawGrid();
 void WrapSnake();
 void MoveSnake();
 void MoveHead();
