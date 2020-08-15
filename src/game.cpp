@@ -59,7 +59,7 @@ Snake::~Snake() {  // Snake deconstructor
 
 Food::Food() {
     // food constructor
-    srand(time(NULL));
+    srand(time(NULL)); // create seed for random food placement
     food.MoveFood();
 }
 
@@ -89,9 +89,9 @@ segment Food::GetFood() {
     return piece;
 }
 
-int RandomNumber(int start, int stop) {
+int RandomNumber(int bottom, int top) {
     // srand is called in object constructor
-    return rand() % stop + start;
+    return rand() % top + bottom;
 }
 
 void SendRulesToOutputStream() {
