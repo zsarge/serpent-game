@@ -99,7 +99,7 @@ void SendRulesToOutputStream() {
     std::cout << "to learn the basics of graphics in C++.\n\n";
     std::cout << "Instructions:\n";
     std::cout << "\tUse WASD to control the serpent.\n";
-    std::cout << "\tDo not run into yourself or the walls.\n" << std::endl;
+    std::cout << "\tDo not run into yourself.\n" << std::endl;
     std::cout.flush();
 }
 

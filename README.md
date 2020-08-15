@@ -11,11 +11,7 @@ The code uses the terms snake and serpent interchangably.
 
 Todo:
 
-- add global speed variable
 - add overload operator for == in apply rules
-- Make constants lowercase
-- Make functions a UniformCase
 - Make instruction queue
-- make snake direction enum
 - make snake not speed run on resize
 - Add action queue
