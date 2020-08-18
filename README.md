@@ -15,3 +15,4 @@ Todo:
 - Make instruction queue
 - make snake not speed run on resize
 - Add action queue
+- Change grid scale based off of size of window.
